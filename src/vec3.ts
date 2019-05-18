@@ -123,34 +123,56 @@ export default class vec3 {
         return (x * x + y * y + z * z)
     }
 
-    add(vector: vec3): vec3 {
-        this.x += vector.x
-        this.y += vector.y
-        this.z += vector.z
+    add(vector: vec3 | number): vec3 {
+        if (typeof vector === 'number') {
+            this.x += vector;
+            this.y += vector;
+            this.z += vector;
+        } else {
+            this.x += vector.x
+            this.y += vector.y
+            this.z += vector.z
+        }
+        return this
+    }
+
+    subtract(vector: vec3 | number): vec3 {
+        if (typeof vector === 'number') {
+            this.x -= vector;
+            this.y -= vector;
+            this.z -= vector;
+        } else {
+            this.x -= vector.x
+            this.y -= vector.y
+            this.z -= vector.z
+        }
+        return this
+    }
+
+    multiply(vector: vec3 | number): vec3 {
+        if (typeof vector === 'number') {
+            this.x *= vector;
+            this.y *= vector;
+            this.z *= vector;
+        } else {
+            this.x *= vector.x
+            this.y *= vector.y
+            this.z *= vector.z
+        }
 
         return this
     }
 
-    subtract(vector: vec3): vec3 {
-        this.x -= vector.x
-        this.y -= vector.y
-        this.z -= vector.z
-
-        return this
-    }
-
-    multiply(vector: vec3): vec3 {
-        this.x *= vector.x
-        this.y *= vector.y
-        this.z *= vector.z
-
-        return this
-    }
-
-    divide(vector: vec3): vec3 {
-        this.x /= vector.x
-        this.y /= vector.y
-        this.z /= vector.z
+    divide(vector: vec3 | number): vec3 {
+        if (typeof vector === 'number') {
+            this.x /= vector;
+            this.y /= vector;
+            this.z /= vector;
+        } else {
+            this.x /= vector.x
+            this.y /= vector.y
+            this.z /= vector.z
+        }
 
         return this
     }
