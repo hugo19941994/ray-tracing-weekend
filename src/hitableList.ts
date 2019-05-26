@@ -17,7 +17,7 @@ export class hitableList extends hitable {
      * @returns whether the ray has hit any object of the list
      */
     hit(r: ray, tMin: number, tMax: number, rec: hitRecord): boolean {
-        let tempRec: hitRecord = {t: 0, p: new vec3(), normal: new vec3()};
+        let tempRec: hitRecord = {t: 0, p: new vec3(), normal: new vec3(), mat: <any>null};
         let hitAnything = false;
         let closestSoFar = tMax;
 
@@ -30,6 +30,7 @@ export class hitableList extends hitable {
                 rec.t = tempRec.t;
                 rec.p = tempRec.p;
                 rec.normal = tempRec.normal;
+                rec.mat = tempRec.mat;
             }
         }
         return hitAnything;

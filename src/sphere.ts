@@ -1,6 +1,7 @@
 import {hitable, hitRecord} from './hitable';
 import vec3 from './vec3';
 import ray from './ray';
+import material from './material';
 
 /**
  * Class which represents a spherical object
@@ -8,11 +9,13 @@ import ray from './ray';
 export class sphere extends hitable {
     public center: vec3;
     public radius: number;
+    public mat: material;
 
-    constructor(cen: vec3, r: number) {
+    constructor(cen: vec3, r: number, mat: material) {
         super();
         this.center = cen;
         this.radius = r;
+        this.mat = mat;
     }
 
     /**
@@ -32,19 +35,19 @@ export class sphere extends hitable {
         if (discriminant > 0) {
             let temp = (-b - Math.sqrt(b * b - a * c)) / a;
             if (temp < tMax && temp > tMin) {
-                console.log(temp);
                 rec.t = temp;
                 rec.p = r.pointAtParameter(rec.t);
                 rec.normal = (rec.p.copy().subtract(this.center)).divide(this.radius);
+                rec.mat = this.mat;
                 return true;
             }
 
             temp = (-b + Math.sqrt(b * b - a * c) / a);
             if (temp < tMax && temp > tMin) {
-                console.log(temp)
                 rec.t = temp;
                 rec.p = r.pointAtParameter(rec.t);
                 rec.normal = (rec.p.copy().subtract(this.center)).divide(this.radius);
+                rec.mat = this.mat;
                 return true
             }
         }

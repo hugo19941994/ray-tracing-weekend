@@ -9,6 +9,11 @@ export default class ray {
         this.dir = b;
     }
 
+    update(r: ray) {
+        this.orig = r.orig;
+        this.dir = r.dir;
+    }
+
     get origin(): vec3 {
         return this.orig;
     }

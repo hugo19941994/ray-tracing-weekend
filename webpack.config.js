@@ -4,7 +4,8 @@ module.exports = {
     entry: path.join(__dirname, '/src/index.ts'),
     output: {
         filename: 'app.js',
-        path: __dirname
+        path: __dirname,
+        globalObject: 'this'
     },
     module: {
         rules: [
@@ -12,7 +13,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/,
-            },
+            }
         ]
     },
     resolve: {

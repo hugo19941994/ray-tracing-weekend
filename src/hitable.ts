@@ -1,5 +1,6 @@
 import ray from './ray';
 import vec3 from './vec3';
+import material from './material';
 
 /**
  * Object to store information about a ray which has hit an object
@@ -8,6 +9,7 @@ export interface hitRecord {
     t: number; // distance to point hit
     p: vec3; // point where ray hits
     normal: vec3; // normal vector of object in hit point
+    mat: material; // material of hit object
 }
 
 /**
