@@ -11,11 +11,11 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "prettier": "^1.17.1",
-    "ts-loader": "^6.0.0",
-    "typescript": "^3.4.5",
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1"
+    "prettier": "^2.0.2",
+    "ts-loader": "^6.2.2",
+    "typescript": "^3.8.3",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
