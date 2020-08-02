@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --hot"
+    "dev": "webpack-dev-server --mode development --hot",
+    "build": "webpack --mode production",
+    "start": "http-server"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "eventemitter3": "^3.1.2"
+    "eventemitter3": "^3.1.2",
+    "http-server": "^0.12.3"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
