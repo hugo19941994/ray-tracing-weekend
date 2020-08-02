@@ -2,7 +2,7 @@
 
 [Ray Tracing in a Weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html) v1.54 implemented using Typescript
 
-## How to run
+## How to run
 
 For the development server run
 
