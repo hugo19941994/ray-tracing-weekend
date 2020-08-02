@@ -4,18 +4,36 @@ import material, { lambertian, metal } from './material';
 import { hitableList } from './hitableList';
 import vec3 from './vec3';
 
+var observer = new MutationObserver(function (mutations, me) {
+  // `mutations` is an array of mutations that occurred
+  // `me` is the MutationObserver instance
+  var btn = document.getElementById('button');
+  if (btn) {
+      btn.addEventListener("click", (e:Event) => render());
+  }
+});
+
+observer.observe(document, {
+  childList: true,
+  subtree: true
+});
+
 var imageData: any;
-(function main() {
+function render() {
+    let w = parseFloat((<HTMLInputElement>document.getElementById('width')).value);
+    let h = parseFloat((<HTMLInputElement>document.getElementById('height')).value);
+    let a = parseFloat((<HTMLInputElement>document.getElementById('antialiasing')).value);
+
     const canvas: any = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
 
     //canvas.width = window.innerWidth;
     //canvas.height = window.innerHeight;
-    canvas.width = 8*200;
-    canvas.height = 8*130;
+    canvas.width = w;
+    canvas.height = h;
     const nx = canvas.width;
     const ny = canvas.height;
-    const ns = 8; // Antialiasing
+    const ns = a; // Antialiasing
     const threads = 8;
 
     imageData = ctx.createImageData(canvas.width, canvas.height);
@@ -23,7 +41,7 @@ var imageData: any;
     function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        main()
+        render()
     }
 
     //window.addEventListener('resize', resizeCanvas, false);
@@ -48,4 +66,4 @@ var imageData: any;
     }
 
     setInterval(() => {ctx.putImageData(imageData, 0, 0);}, 10000)
-})()
+}
