@@ -1,0 +1,42 @@
+name: Ray Tracing Weekend Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and push image
+      uses: docker/build-push-action@v1
+      with:
+        username: hugo19941994
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: hugo19941994/ray-tracing
+        tags: latest
+
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+    - name: Save DigitalOcean kubeconfig
+      run: doctl kubernetes cluster kubeconfig save k8s-1-18-6-do-0-lon1-1595844489030
+
+    - name: Deploy to DigitalOcean Kubernetes
+      run: kubectl apply -f manifest.yaml
+
+    - name: Deploy to DigitalOcean Kubernetes
+      run: kubectl apply -f ingress.yaml
+
+    - name: Deploy to DigitalOcean Kubernetes
+      run: kubectl rollout restart deployment/ovpn
+
+    - name: Verify deployment
+      run: kubectl rollout status deployment/ovpn
